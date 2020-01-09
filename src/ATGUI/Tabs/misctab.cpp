@@ -451,6 +451,7 @@ void Misc::RenderTab()
 				ImGui::Checkbox(XORSTR("Silent Defuse"), &Settings::AutoDefuse::silent);
 				ImGui::Checkbox(XORSTR("Attempt NoFall"), &Settings::NoFall::enabled);
 				ImGui::Checkbox(XORSTR("Backtrack"), &Settings::Backtrack::enabled);
+				ImGui::Checkbox(XORSTR("Invert gravity"), &Settings::InvertGravity::enabled);
 			}
 			ImGui::Columns(1);
 			ImGui::Separator();

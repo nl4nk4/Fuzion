@@ -1109,6 +1109,11 @@ namespace Settings
 		extern bool enabled;
 	}
 
+	namespace InvertGravity
+	{
+		extern bool enabled;
+	}
+
 	namespace DisablePostProcessing
 	{
 		extern bool enabled;

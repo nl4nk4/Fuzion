@@ -609,6 +609,7 @@ void Settings::LoadDefaultsOrSave(std::string path)
 	settings[XORSTR("DisablePostProcessing")][XORSTR("enabled")] = Settings::DisablePostProcessing::enabled;
 	settings[XORSTR("NoFall")][XORSTR("enabled")] = Settings::NoFall::enabled;
 	settings[XORSTR("Backtrack")][XORSTR("enabled")] = Settings::Backtrack::enabled;
+	settings[XORSTR("InvertGravity")][XORSTR("enabled")] = Settings::InvertGravity::enabled;
 
 	settings[XORSTR("GrenadeHelper")][XORSTR("enabled")] = Settings::GrenadeHelper::enabled;
 	settings[XORSTR("GrenadeHelper")][XORSTR("aimAssist")] = Settings::GrenadeHelper::aimAssist;
@@ -1185,6 +1186,7 @@ void Settings::LoadConfig(std::string path)
 
 	GetVal(settings[XORSTR("NoFall")][XORSTR("enabled")], &Settings::NoFall::enabled);
 	GetVal(settings[XORSTR("Backtrack")][XORSTR("enabled")], &Settings::Backtrack::enabled);
+	GetVal(settings[XORSTR("InvertGravity")][XORSTR("enabled")], &Settings::InvertGravity::enabled);
 
 	GetVal(settings[XORSTR("GrenadeHelper")][XORSTR("enabled")], &Settings::GrenadeHelper::enabled);
 	GetVal(settings[XORSTR("GrenadeHelper")][XORSTR("aimAssist")], &Settings::GrenadeHelper::aimAssist);

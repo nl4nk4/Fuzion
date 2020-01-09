@@ -9,6 +9,7 @@
 #include "../Hacks/resolver.h"
 #include "../Hacks/skybox.h"
 #include "../Hacks/asuswalls.h"
+#include "../Hacks/ragdoll.h"
 #include "../Hacks/nosmoke.h"
 #include "../Hacks/thirdperson.h"
 #include "../Hacks/backtrack.h"
@@ -28,7 +29,7 @@ void Hooks::FrameStageNotify(void* thisptr, ClientFrameStage_t stage)
 	ASUSWalls::FrameStageNotify(stage);
 	NoSmoke::FrameStageNotify(stage);
 	ThirdPerson::FrameStageNotify(stage);
-
+	RagdollGravity::FrameStageNotify(stage);
 	if (SkinChanger::forceFullUpdate)
 	{
 		GetLocalClient(-1)->m_nDeltaTick = -1;
