@@ -31,5 +31,5 @@ echo "Target Lib: " $libraryPath
 "set \$dlinfo = (int (*)(void*, int, void*)) dlinfo\n" \
 "set \$malloc = (void*(*)(long long)) malloc\n" \
 "set \$dlclose = (int(*)(void*)) dlclose\n" \
-"set \dlerror = (char*(*)(void)) dlerror\n" \
+"set \$dlerror = (char*(*)(void)) dlerror\n" \
 ""; cat) | sudo gdb -p $csgo_pid
