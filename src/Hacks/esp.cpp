@@ -1036,14 +1036,19 @@ static void DrawPlayer(C_BasePlayer* player)
 		return;
 
 	bool bIsVisible = false;
+
+	ImColor playerColor = ESP::GetESPPlayerColor(player, bIsVisible);
+
+    if (Settings::ESP::Sounds::enabled) {
+		DrawSounds( player, playerColor );
+	}
+
 	if (Settings::ESP::Filters::visibilityCheck || Settings::ESP::Filters::legit)
 	{
 		bIsVisible = Entity::IsVisible(player, BONE_HEAD, 180.f, Settings::ESP::Filters::smokeCheck);
 		if (!bIsVisible && Settings::ESP::Filters::legit)
 			return;
 	}
-
-	ImColor playerColor = ESP::GetESPPlayerColor(player, bIsVisible);
 
 	int x, y, w, h;
 	if (!GetBox(player, x, y, w, h))
@@ -1078,10 +1083,6 @@ static void DrawPlayer(C_BasePlayer* player)
 
 	if (Settings::Debug::AutoAim::drawTarget)
 		DrawAimbotSpot();
-
-    if (Settings::ESP::Sounds::enabled) {
-		DrawSounds( player, playerColor );
-	}
 
 
 	/* Checks various Text Settings */
