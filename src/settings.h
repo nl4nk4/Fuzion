@@ -1104,6 +1104,11 @@ namespace Settings
 		extern bool enabled;
 	}
 
+	namespace Backtrack
+	{
+		extern bool enabled;
+	}
+
 	namespace DisablePostProcessing
 	{
 		extern bool enabled;

@@ -11,11 +11,13 @@
 #include "../Hacks/asuswalls.h"
 #include "../Hacks/nosmoke.h"
 #include "../Hacks/thirdperson.h"
+#include "../Hacks/backtrack.h"
 
 typedef void (*FrameStageNotifyFn) (void*, ClientFrameStage_t);
 
 void Hooks::FrameStageNotify(void* thisptr, ClientFrameStage_t stage)
 {
+	Backtrack::FrameStageNotify(stage);
 	CustomGlow::FrameStageNotify(stage);
 	SkinChanger::FrameStageNotifyModels(stage);
 	SkinChanger::FrameStageNotifySkins(stage);

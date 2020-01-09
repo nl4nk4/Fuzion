@@ -1,5 +1,6 @@
 #include <iomanip>
 
+#include "backtrack.h"
 #include "esp.h"
 #include "autowall.h"
 #include "../fonts.h"
@@ -792,6 +793,18 @@ static void DrawHeaddot( C_BasePlayer* player ) {
 		bIsVisible = Entity::IsVisible( player, BONE_HEAD, 180.f, Settings::ESP::Filters::smokeCheck );
 
 	Draw::AddCircleFilled( head2D.x, head2D.y, Settings::ESP::HeadDot::size, ESP::GetESPPlayerColor( player, bIsVisible ), 10 );
+
+    for (int t = 0; t < 12; ++t)
+    {
+    	Vector hhead2D;
+		Vector hhead3D = Backtrack::headPositions[player->GetIndex()][t].hitboxPos;
+		if ( debugOverlay->ScreenPosition( Vector( hhead3D.x, hhead3D.y, hhead3D.z ), hhead2D ) )
+			return;
+		Draw::AddCircleFilled( hhead2D.x, hhead2D.y, 5.f,  ImColor(252,15,192,255), 10 );
+    }
+
+	// if (!pLocal->GetAlive()) 
+	// memset(&Backtrack::headPositions[0][0], 0, sizeof(Backtrack::headPositions));
 }
 
 static void DrawSounds( C_BasePlayer *player, ImColor playerColor ) {
