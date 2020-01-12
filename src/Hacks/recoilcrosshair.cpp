@@ -26,7 +26,7 @@ void Recoilcrosshair::Paint( ) {
 
 	CSWeaponType weaponType = activeWeapon->GetCSWpnData()->GetWeaponType();
 	if ( weaponType != CSWeaponType::WEAPONTYPE_RIFLE && weaponType != CSWeaponType::WEAPONTYPE_SUBMACHINEGUN &&
-		 weaponType != CSWeaponType::WEAPONTYPE_MACHINEGUN )
+		 weaponType != CSWeaponType::WEAPONTYPE_MACHINEGUN && weaponType != CSWeaponType::WEAPONTYPE_PISTOL)
 		return;
 
 	QAngle punchAngle = *localplayer->GetAimPunchAngle();
@@ -37,7 +37,7 @@ void Recoilcrosshair::Paint( ) {
 	int dy = Paint::engineHeight / OverrideView::currentFOV;
 
 	int crosshairX = ( int ) ( x - ( dx * punchAngle.y ) );
-	int crosshairY = ( int ) ( y + ( dy * punchAngle.x ) );
+	int crosshairY = ( int ) ( y + ( dy * punchAngle.x * 2) );
 
 	// outline horizontal
 	Draw::AddRectFilled( crosshairX - 4, crosshairY - 1, crosshairX + 5, crosshairY + 2, ImColor( 0, 0, 0, 225 ) );
