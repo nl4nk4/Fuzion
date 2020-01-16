@@ -784,7 +784,7 @@ static void DrawAutoWall(C_BasePlayer *player) {
 static void DrawHeaddot( C_BasePlayer* player ) {
 
 	Vector head2D;
-	Vector head3D = player->GetBonePosition( BONE_HEAD );
+	Vector head3D = player->GetBonePosition(8);
 	if ( debugOverlay->ScreenPosition( Vector( head3D.x, head3D.y, head3D.z ), head2D ) )
 		return;
 
@@ -800,7 +800,7 @@ static void DrawHeaddot( C_BasePlayer* player ) {
 		Vector hhead3D = Backtrack::headPositions[player->GetIndex()][t].hitboxPos;
 		if ( debugOverlay->ScreenPosition( Vector( hhead3D.x, hhead3D.y, hhead3D.z ), hhead2D ) )
 			return;
-		Draw::AddCircleFilled( hhead2D.x, hhead2D.y, 5.f,  ImColor(252,15,192,255), 10 );
+		Draw::AddCircleFilled( hhead2D.x, hhead2D.y, Settings::ESP::HeadDot::size, ESP::GetESPPlayerColor( player, bIsVisible ), 10 );
     }
 
 	// if (!pLocal->GetAlive()) 
