@@ -24,8 +24,8 @@ fi
 
 # pBypass for crash dumps being sent
 # You may also want to consider using -nobreakpad in your launch options.
-sudo rm -rf /tmp/dumps # Remove if it exists
-sudo mkdir --mode=000 /tmp/dumps # Make it as root with no permissions
+doas rm -rf /tmp/dumps # Remove if it exists
+doas mkdir --mode=000 /tmp/dumps # Make it as root with no permissions
 
 if [ ! -f build_id ]; then
     echo "Build ID not found. Please rebuild using the './build' script."
@@ -42,12 +42,12 @@ fi
 echo "Injecting Build ID: $filename"
 
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
-echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
+echo "2" | doas tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
 
-sudo cp "$filename" "/usr/lib/${filename}"
+doas cp "$filename" "/usr/lib/${filename}"
 
-sudo killall -19 steam
-sudo killall -19 steamwebhelper
+doas killall -19 steam
+doas killall -19 steamwebhelper
 
 lib_dir_name="lib"
 if [ $(getconf LONG_BIT) = 64 ]; then
@@ -55,7 +55,7 @@ if [ $(getconf LONG_BIT) = 64 ]; then
 fi
 
 input="$(
-sudo gdb -n -q -batch-silent \
+doas gdb -n -q -batch-silent \
   -ex "set logging on" \
   -ex "set logging file /dev/null" \
   -ex "set logging redirect on" \
@@ -68,10 +68,10 @@ sudo gdb -n -q -batch-silent \
 )"
 
 sleep 1
-sudo killall -18 steamwebhelper
-sudo killall -18 steam
+doas killall -18 steamwebhelper
+doas killall -18 steam
 
-sudo rm "/usr/lib/${filename}"
+doas rm "/usr/lib/${filename}"
 
 last_line="${input##*$'\n'}"
 
